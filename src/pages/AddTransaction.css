@@ -1,0 +1,69 @@
+.add-transaction {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.add-transaction-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.back-btn {
+  background: none;
+  color: var(--text-primary);
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+
+.back-btn:hover {
+  background: var(--bg-secondary);
+}
+
+.add-transaction-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.type-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.type-btn {
+  padding: 1rem;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-primary);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+
+.type-btn.active.income {
+  border-color: var(--income);
+  color: var(--income);
+  background: rgba(76, 175, 80, 0.1);
+}
+
+.type-btn.active.expense {
+  border-color: var(--expense);
+  color: var(--expense);
+  background: rgba(244, 67, 54, 0.1);
+}
+
+@media (min-width: 768px) {
+  .add-transaction-title {
+    font-size: 2.25rem;
+  }
+
+  .type-selector {
+    max-width: 400px;
+  }
+}
+

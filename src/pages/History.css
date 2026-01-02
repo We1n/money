@@ -1,0 +1,144 @@
+.history {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.history-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.filters {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filter-select,
+.filter-date {
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  flex: 1;
+  min-width: 150px;
+}
+
+.filter-select:focus,
+.filter-date:focus {
+  border-color: var(--income);
+  outline: none;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-secondary);
+}
+
+.transactions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.transaction-item {
+  background: var(--bg-primary);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px var(--shadow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.transaction-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.transaction-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  gap: 1rem;
+}
+
+.transaction-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.transaction-category {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.transaction-date {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.transaction-comment {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.transaction-amount {
+  font-size: 1.25rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.transaction-amount.income {
+  color: var(--income);
+}
+
+.transaction-amount.expense {
+  color: var(--expense);
+}
+
+.edit-btn,
+.delete-btn {
+  background: none;
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+  border-radius: 4px;
+}
+
+.edit-btn:hover {
+  background: var(--bg-secondary);
+  color: var(--income);
+}
+
+.delete-btn:hover {
+  background: var(--bg-secondary);
+  color: var(--expense);
+}
+
+@media (min-width: 768px) {
+  .history-title {
+    font-size: 2.25rem;
+  }
+
+  .transaction-item {
+    padding: 1.25rem;
+  }
+}
+
