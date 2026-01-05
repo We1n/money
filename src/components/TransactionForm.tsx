@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useBudgetStore } from '../store';
 import { TransactionType, Transaction } from '../types';
-import './TransactionForm.css';
+import styles from './TransactionForm.module.css';
 
 interface TransactionFormProps {
   type: TransactionType;
@@ -76,7 +76,7 @@ export default function TransactionForm({
 
   const formContent = (
     <>
-      <div className="form-header">
+      <div className={styles.formHeader}>
         <h2>
           {transaction 
             ? (type === 'income' ? 'Редактировать доход' : 'Редактировать расход')
@@ -84,12 +84,12 @@ export default function TransactionForm({
           }
         </h2>
         {isModal && (
-          <button className="close-btn" onClick={onClose}>×</button>
+          <button className={styles.closeBtn} onClick={onClose}>×</button>
         )}
       </div>
 
-      <form onSubmit={handleSubmit} className="transaction-form">
-          <div className="form-group">
+      <form onSubmit={handleSubmit} className={styles.transactionForm}>
+          <div className={styles.formGroup}>
             <label htmlFor="amount">Сумма</label>
             <input
               id="amount"
@@ -103,7 +103,7 @@ export default function TransactionForm({
             />
           </div>
 
-          <div className="form-group">
+          <div className={styles.formGroup}>
             <label htmlFor="category">Категория</label>
             <select
               id="category"
@@ -120,7 +120,7 @@ export default function TransactionForm({
             </select>
           </div>
 
-          <div className="form-group">
+          <div className={styles.formGroup}>
             <label htmlFor="date">Дата</label>
             <input
               id="date"
@@ -131,7 +131,7 @@ export default function TransactionForm({
             />
           </div>
 
-          <div className="form-group">
+          <div className={styles.formGroup}>
             <label htmlFor="comment">Комментарий (необязательно)</label>
             <input
               id="comment"
@@ -144,7 +144,7 @@ export default function TransactionForm({
 
           <button
             type="submit"
-            className={`submit-btn ${type === 'income' ? 'income' : 'expense'}`}
+            className={`${styles.submitBtn} ${type === 'income' ? styles.income : styles.expense}`}
           >
             {transaction ? 'Сохранить' : 'Добавить'}
           </button>
@@ -154,8 +154,8 @@ export default function TransactionForm({
 
   if (isModal) {
     return (
-      <div className="form-overlay" onClick={onClose}>
-        <div className="form-container" onClick={(e) => e.stopPropagation()}>
+      <div className={styles.formOverlay} onClick={onClose}>
+        <div className={styles.formContainer} onClick={(e) => e.stopPropagation()}>
           {formContent}
         </div>
       </div>
@@ -163,7 +163,7 @@ export default function TransactionForm({
   }
 
   return (
-    <div className="form-container-inline">
+    <div className={styles.formContainerInline}>
       {formContent}
     </div>
   );

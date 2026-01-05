@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import { useBudgetStore } from '../store';
 import { Transaction } from '../types';
 import TransactionForm from '../components/TransactionForm';
-import './History.css';
+import styles from './History.module.css';
 
 export default function History() {
   const { transactions, deleteTransaction, categories } = useBudgetStore();
@@ -39,14 +39,14 @@ export default function History() {
   };
 
   return (
-    <div className="history">
-      <h1 className="history-title">История операций</h1>
+    <div className={styles.history}>
+      <h1 className={styles.historyTitle}>История операций</h1>
 
-      <div className="filters">
+      <div className={styles.filters}>
         <select
           value={filterType}
           onChange={(e) => setFilterType(e.target.value as typeof filterType)}
-          className="filter-select"
+          className={styles.filterSelect}
         >
           <option value="all">Все операции</option>
           <option value="income">Доходы</option>
@@ -57,17 +57,17 @@ export default function History() {
           type="date"
           value={filterDate}
           onChange={(e) => setFilterDate(e.target.value)}
-          className="filter-date"
+          className={styles.filterDate}
           placeholder="Фильтр по дате"
         />
       </div>
 
       {filteredTransactions.length === 0 ? (
-        <div className="empty-state">
+        <div className={styles.emptyState}>
           <p>Нет операций</p>
         </div>
       ) : (
-        <div className="transactions-list">
+        <div className={styles.transactionsList}>
           {filteredTransactions.map((transaction) => (
             <TransactionItem
               key={transaction.id}
@@ -108,19 +108,19 @@ function TransactionItem({
   formatDate,
 }: TransactionItemProps) {
   return (
-    <div className="transaction-item">
-      <div className="transaction-main">
-        <div className="transaction-info">
-          <div className="transaction-category" style={{ color: categoryColor }}>
+    <div className={styles.transactionItem}>
+      <div className={styles.transactionMain}>
+        <div className={styles.transactionInfo}>
+          <div className={styles.transactionCategory} style={{ color: categoryColor }}>
             {transaction.category}
           </div>
-          <div className="transaction-date">{formatDate(transaction.date)}</div>
+          <div className={styles.transactionDate}>{formatDate(transaction.date)}</div>
           {transaction.comment && (
-            <div className="transaction-comment">{transaction.comment}</div>
+            <div className={styles.transactionComment}>{transaction.comment}</div>
           )}
         </div>
         <div
-          className={`transaction-amount ${transaction.type === 'income' ? 'income' : 'expense'}`}
+          className={`${styles.transactionAmount} ${transaction.type === 'income' ? styles.income : styles.expense}`}
         >
           {transaction.type === 'income' ? '+' : '−'}
           {transaction.amount.toLocaleString('ru-RU', {
@@ -130,16 +130,16 @@ function TransactionItem({
           {' ₽'}
         </div>
       </div>
-      <div className="transaction-actions">
+      <div className={styles.transactionActions}>
         <button
-          className="edit-btn"
+          className={styles.editBtn}
           onClick={() => onEdit(transaction)}
           aria-label="Редактировать"
         >
           ✎
         </button>
         <button
-          className="delete-btn"
+          className={styles.deleteBtn}
           onClick={() => onDelete(transaction.id)}
           aria-label="Удалить"
         >

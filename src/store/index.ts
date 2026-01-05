@@ -9,6 +9,7 @@ interface BudgetState {
   updateTransaction: (id: string, transaction: Omit<Transaction, 'id'>) => void;
   deleteTransaction: (id: string) => void;
   addCategory: (category: Omit<Category, 'id'>) => void;
+  updateCategory: (id: string, updates: Partial<Category>) => void;
   getBalance: () => number;
   getTransactionsByType: (type: Transaction['type']) => Transaction[];
   getTransactionsByDateRange: (start: string, end: string) => Transaction[];
@@ -16,14 +17,14 @@ interface BudgetState {
 }
 
 const defaultCategories: Category[] = [
-  { id: '1', name: 'Еда', color: '#4CAF50' },
-  { id: '2', name: 'Транспорт', color: '#2196F3' },
-  { id: '3', name: 'Развлечения', color: '#FF9800' },
-  { id: '4', name: 'Здоровье', color: '#F44336' },
-  { id: '5', name: 'Покупки', color: '#9C27B0' },
-  { id: '6', name: 'Другое', color: '#607D8B' },
-  { id: '7', name: 'Зарплата', color: '#4CAF50' },
-  { id: '8', name: 'Подарки', color: '#E91E63' },
+  { id: '1', name: 'Еда', color: '#4CAF50', icon: '🍔', isQuickAccess: true },
+  { id: '2', name: 'Транспорт', color: '#2196F3', icon: '🚗', isQuickAccess: true },
+  { id: '3', name: 'Развлечения', color: '#FF9800', icon: '🎬', isQuickAccess: true },
+  { id: '4', name: 'Здоровье', color: '#F44336', icon: '💊', isQuickAccess: false },
+  { id: '5', name: 'Покупки', color: '#9C27B0', icon: '🛍️', isQuickAccess: true },
+  { id: '6', name: 'Другое', color: '#607D8B', icon: '📦', isQuickAccess: false },
+  { id: '7', name: 'Зарплата', color: '#4CAF50', icon: '💰', isQuickAccess: true },
+  { id: '8', name: 'Подарки', color: '#E91E63', icon: '🎁', isQuickAccess: false },
 ];
 
 export const useBudgetStore = create<BudgetState>()(
@@ -63,6 +64,14 @@ export const useBudgetStore = create<BudgetState>()(
         };
         set((state) => ({
           categories: [...state.categories, newCategory],
+        }));
+      },
+
+      updateCategory: (id, updates) => {
+        set((state) => ({
+          categories: state.categories.map((c) =>
+            c.id === id ? { ...c, ...updates } : c
+          ),
         }));
       },
 

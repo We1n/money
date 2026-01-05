@@ -1,0 +1,153 @@
+.dashboard {
+  padding: var(--spacing-lg);
+  padding-bottom: calc(var(--spacing-lg) + 80px); /* Space for bottom nav */
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-xl);
+  text-align: center;
+}
+
+.balanceCard {
+  margin-bottom: var(--spacing-xl);
+  text-align: center;
+}
+
+.balanceLabel {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-sm);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.balanceAmount {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+}
+
+.balanceAmount.positive {
+  color: var(--color-income);
+}
+
+.balanceAmount.negative {
+  color: var(--color-expense);
+}
+
+.quickActions {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.actionButton {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-lg);
+}
+
+.actionIcon {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+}
+
+.quickPresets {
+  margin-top: var(--spacing-xl);
+}
+
+.quickPresetsTitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.presetsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.presetButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-md);
+  background-color: var(--color-bg-primary);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  min-height: 100px;
+}
+
+.presetButton:hover {
+  border-color: var(--category-color);
+  background-color: var(--color-bg-secondary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.presetButton:active {
+  transform: translateY(0);
+}
+
+.presetIcon {
+  font-size: var(--font-size-2xl);
+  line-height: 1;
+}
+
+.presetLabel {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .dashboard {
+    padding: var(--spacing-md);
+    padding-bottom: calc(var(--spacing-md) + 80px);
+  }
+
+  .title {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .balanceAmount {
+    font-size: var(--font-size-2xl);
+  }
+
+  .quickActions {
+    flex-direction: column;
+  }
+
+  .presetsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: var(--spacing-sm);
+  }
+
+  .presetButton {
+    min-height: 80px;
+    padding: var(--spacing-sm);
+  }
+
+  .presetIcon {
+    font-size: var(--font-size-xl);
+  }
+}
+

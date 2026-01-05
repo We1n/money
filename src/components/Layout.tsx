@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import './Layout.css';
+import styles from './Layout.module.css';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -16,17 +16,17 @@ export default function Layout({ children }: LayoutProps) {
   ];
 
   return (
-    <div className="layout">
-      <main className="main-content">{children}</main>
-      <nav className="bottom-nav">
+    <div className={styles.layout}>
+      <main className={styles.mainContent}>{children}</main>
+      <nav className={styles.bottomNav}>
         {navItems.map((item) => (
           <Link
             key={item.path}
             to={item.path}
-            className={`nav-item ${location.pathname === item.path ? 'active' : ''}`}
+            className={`${styles.navItem} ${location.pathname === item.path ? styles.active : ''}`}
           >
-            <span className="nav-icon">{item.icon}</span>
-            <span className="nav-label">{item.label}</span>
+            <span className={styles.navIcon}>{item.icon}</span>
+            <span className={styles.navLabel}>{item.label}</span>
           </Link>
         ))}
       </nav>

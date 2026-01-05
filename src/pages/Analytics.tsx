@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { motion } from 'framer-motion';
 import { useBudgetStore } from '../store';
 import {
   PieChart,
@@ -13,7 +14,9 @@ import {
   Legend,
   ResponsiveContainer,
 } from 'recharts';
-import './Analytics.css';
+import BudgetProgressBar from '../components/BudgetProgressBar';
+import { Card } from '../components/ui';
+import styles from './Analytics.module.css';
 
 export default function Analytics() {
   const { transactions, categories } = useBudgetStore();
@@ -85,14 +88,37 @@ export default function Analytics() {
       .reduce((sum, t) => sum + t.amount, 0);
   }, [transactions]);
 
-  return (
-    <div className="analytics">
-      <h1 className="analytics-title">Аналитика</h1>
+  const budgetProgressData = useMemo(() => {
+    const expenseTransactions = transactions.filter((t) => t.type === 'expense');
+    const categoryExpenses = new Map<string, number>();
 
-      <div className="stats-cards">
-        <div className="stat-card income">
-          <div className="stat-label">Всего доходов</div>
-          <div className="stat-value">
+    expenseTransactions.forEach((t) => {
+      const current = categoryExpenses.get(t.category) || 0;
+      categoryExpenses.set(t.category, current + t.amount);
+    });
+
+    return categories
+      .filter((cat) => cat.limit && cat.limit > 0)
+      .map((cat) => ({
+        category: cat,
+        currentAmount: categoryExpenses.get(cat.name) || 0,
+        limit: cat.limit!,
+      }))
+      .sort((a, b) => {
+        const aPercentage = (a.currentAmount / a.limit) * 100;
+        const bPercentage = (b.currentAmount / b.limit) * 100;
+        return bPercentage - aPercentage;
+      });
+  }, [transactions, categories]);
+
+  return (
+    <div className={styles.analytics}>
+      <h1 className={styles.analyticsTitle}>Аналитика</h1>
+
+      <div className={styles.statsCards}>
+        <div className={`${styles.statCard} ${styles.income}`}>
+          <div className={styles.statLabel}>Всего доходов</div>
+          <div className={styles.statValue}>
             {totalIncome.toLocaleString('ru-RU', {
               minimumFractionDigits: 0,
               maximumFractionDigits: 0,
@@ -100,9 +126,9 @@ export default function Analytics() {
             {' ₽'}
           </div>
         </div>
-        <div className="stat-card expense">
-          <div className="stat-label">Всего расходов</div>
-          <div className="stat-value">
+        <div className={`${styles.statCard} ${styles.expense}`}>
+          <div className={styles.statLabel}>Всего расходов</div>
+          <div className={styles.statValue}>
             {totalExpense.toLocaleString('ru-RU', {
               minimumFractionDigits: 0,
               maximumFractionDigits: 0,
@@ -113,8 +139,8 @@ export default function Analytics() {
       </div>
 
       {categoryData.length > 0 && (
-        <div className="chart-container">
-          <h2 className="chart-title">Расходы по категориям</h2>
+        <div className={styles.chartContainer}>
+          <h2 className={styles.chartTitle}>Расходы по категориям</h2>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
@@ -144,8 +170,8 @@ export default function Analytics() {
       )}
 
       {monthlyData.length > 0 && (
-        <div className="chart-container">
-          <h2 className="chart-title">Доходы и расходы по месяцам</h2>
+        <div className={styles.chartContainer}>
+          <h2 className={styles.chartTitle}>Доходы и расходы по месяцам</h2>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={monthlyData}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -164,8 +190,30 @@ export default function Analytics() {
         </div>
       )}
 
-      {categoryData.length === 0 && monthlyData.length === 0 && (
-        <div className="empty-state">
+      {budgetProgressData.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3, delay: 0.2 }}
+        >
+          <Card variant="elevated" padding="lg" className={styles.budgetSection}>
+            <h2 className={styles.chartTitle}>Прогресс по бюджету</h2>
+            <div className={styles.progressList}>
+              {budgetProgressData.map((item) => (
+                <BudgetProgressBar
+                  key={item.category.id}
+                  category={item.category}
+                  currentAmount={item.currentAmount}
+                  limit={item.limit}
+                />
+              ))}
+            </div>
+          </Card>
+        </motion.div>
+      )}
+
+      {categoryData.length === 0 && monthlyData.length === 0 && budgetProgressData.length === 0 && (
+        <div className={styles.emptyState}>
           <p>Нет данных для анализа</p>
         </div>
       )}

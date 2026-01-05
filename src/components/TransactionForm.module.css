@@ -1,4 +1,4 @@
-.form-overlay {
+.formOverlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -12,7 +12,7 @@
   padding: 1rem;
 }
 
-.form-container {
+.formContainer {
   background: var(--bg-primary);
   border-radius: 12px;
   width: 100%;
@@ -22,14 +22,14 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
-.form-container-inline {
+.formContainerInline {
   background: var(--bg-primary);
   border-radius: 12px;
   width: 100%;
   box-shadow: 0 2px 8px var(--shadow);
 }
 
-.form-header {
+.formHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -37,12 +37,12 @@
   border-bottom: 1px solid var(--border);
 }
 
-.form-header h2 {
+.formHeader h2 {
   font-size: 1.25rem;
   font-weight: 600;
 }
 
-.close-btn {
+.closeBtn {
   background: none;
   font-size: 2rem;
   color: var(--text-secondary);
@@ -55,31 +55,31 @@
   padding: 0;
 }
 
-.close-btn:hover {
+.closeBtn:hover {
   color: var(--text-primary);
 }
 
-.transaction-form {
+.transactionForm {
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
 }
 
-.form-group {
+.formGroup {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-.form-group label {
+.formGroup label {
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--text-primary);
 }
 
-.form-group input,
-.form-group select {
+.formGroup input,
+.formGroup select {
   padding: 0.75rem;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -88,12 +88,12 @@
   color: var(--text-primary);
 }
 
-.form-group input:focus,
-.form-group select:focus {
+.formGroup input:focus,
+.formGroup select:focus {
   border-color: var(--income);
 }
 
-.submit-btn {
+.submitBtn {
   padding: 0.875rem;
   border-radius: 8px;
   font-size: 1rem;
@@ -102,19 +102,19 @@
   margin-top: 0.5rem;
 }
 
-.submit-btn.income {
+.submitBtn.income {
   background: var(--income);
 }
 
-.submit-btn.expense {
+.submitBtn.expense {
   background: var(--expense);
 }
 
-.submit-btn:hover {
+.submitBtn:hover {
   opacity: 0.9;
 }
 
-.submit-btn:active {
+.submitBtn:active {
   transform: scale(0.98);
 }
 

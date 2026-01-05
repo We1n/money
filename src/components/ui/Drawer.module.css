@@ -1,0 +1,137 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-bg-overlay);
+  z-index: var(--z-modal-backdrop);
+}
+
+.drawer {
+  position: fixed;
+  background-color: var(--color-bg-primary);
+  z-index: var(--z-modal);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+/* Positions */
+.bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-top-left-radius: var(--radius-xl);
+  border-top-right-radius: var(--radius-xl);
+  max-height: 90vh;
+}
+
+.left {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  border-top-right-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
+  max-width: 90vw;
+}
+
+.right {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border-top-left-radius: var(--radius-lg);
+  border-bottom-left-radius: var(--radius-lg);
+  max-width: 90vw;
+}
+
+/* Sizes */
+.size-sm {
+  width: 100%;
+  max-width: 400px;
+}
+
+.size-md {
+  width: 100%;
+  max-width: 500px;
+}
+
+.size-lg {
+  width: 100%;
+  max-width: 600px;
+}
+
+.size-full {
+  width: 100%;
+  max-width: 100%;
+}
+
+.bottom.size-sm,
+.bottom.size-md,
+.bottom.size-lg,
+.bottom.size-full {
+  max-width: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-2xl);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  padding: 0;
+  line-height: 1;
+}
+
+.closeButton:hover {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-lg);
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .bottom {
+    max-height: 95vh;
+  }
+
+  .header {
+    padding: var(--spacing-md);
+  }
+
+  .content {
+    padding: var(--spacing-md);
+  }
+}
+

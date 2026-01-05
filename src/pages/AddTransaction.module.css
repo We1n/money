@@ -1,0 +1,46 @@
+.addTransaction {
+  padding: var(--spacing-lg);
+  padding-bottom: calc(var(--spacing-lg) + 80px);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.backButton {
+  flex-shrink: 0;
+}
+
+.title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.typeSelector {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.typeButton {
+  flex: 1;
+}
+
+@media (max-width: 640px) {
+  .addTransaction {
+    padding: var(--spacing-md);
+    padding-bottom: calc(var(--spacing-md) + 80px);
+  }
+
+  .title {
+    font-size: var(--font-size-xl);
+  }
+}
+

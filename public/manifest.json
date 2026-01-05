@@ -1,0 +1,42 @@
+{
+  "name": "Budget Tracker - ADHD Friendly",
+  "short_name": "Budget",
+  "description": "Дружелюбный к дофамину трекер бюджета для пользователей с СДВГ",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#4CAF50",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["finance", "productivity"],
+  "shortcuts": [
+    {
+      "name": "Добавить расход",
+      "short_name": "Расход",
+      "description": "Быстро добавить расход",
+      "url": "/add?type=expense",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Добавить доход",
+      "short_name": "Доход",
+      "description": "Быстро добавить доход",
+      "url": "/add?type=income",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
+

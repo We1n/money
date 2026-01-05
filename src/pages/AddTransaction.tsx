@@ -1,43 +1,61 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useBudgetStore } from '../store';
-import TransactionForm from '../components/TransactionForm';
-import './AddTransaction.css';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import TransactionFormNew from '../components/TransactionFormNew';
+import { Button } from '../components/ui';
+import styles from './AddTransaction.module.css';
 
 export default function AddTransaction() {
   const navigate = useNavigate();
-  const [type, setType] = useState<'income' | 'expense'>('expense');
+  const [searchParams] = useSearchParams();
+  const typeFromUrl = searchParams.get('type');
+  const [type, setType] = useState<'income' | 'expense'>(
+    (typeFromUrl === 'income' ? 'income' : 'expense') as 'income' | 'expense'
+  );
+  const [isFormOpen, setIsFormOpen] = useState(true);
 
   const handleClose = () => {
-    navigate(-1);
+    setIsFormOpen(false);
+    setTimeout(() => navigate(-1), 300); // Wait for animation
   };
 
   return (
-    <div className="add-transaction">
-      <div className="add-transaction-header">
-        <button className="back-btn" onClick={handleClose}>
+    <div className={styles.addTransaction}>
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className={styles.header}
+      >
+        <Button variant="ghost" onClick={handleClose} className={styles.backButton}>
           ← Назад
-        </button>
-        <h1 className="add-transaction-title">Добавить операцию</h1>
-      </div>
+        </Button>
+        <h1 className={styles.title}>Добавить операцию</h1>
+      </motion.div>
 
-      <div className="type-selector">
-        <button
-          className={`type-btn ${type === 'income' ? 'active income' : ''}`}
+      <div className={styles.typeSelector}>
+        <Button
+          variant={type === 'income' ? 'income' : 'secondary'}
           onClick={() => setType('income')}
+          className={styles.typeButton}
+          fullWidth
         >
           Доход
-        </button>
-        <button
-          className={`type-btn ${type === 'expense' ? 'active expense' : ''}`}
+        </Button>
+        <Button
+          variant={type === 'expense' ? 'expense' : 'secondary'}
           onClick={() => setType('expense')}
+          className={styles.typeButton}
+          fullWidth
         >
           Расход
-        </button>
+        </Button>
       </div>
 
-      <TransactionForm type={type} onClose={handleClose} isModal={false} />
+      <TransactionFormNew
+        type={type}
+        onClose={handleClose}
+        isOpen={isFormOpen}
+      />
     </div>
   );
 }
-

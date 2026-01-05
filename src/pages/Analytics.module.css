@@ -4,19 +4,19 @@
   gap: 2rem;
 }
 
-.analytics-title {
+.analyticsTitle {
   font-size: 1.75rem;
   font-weight: 600;
   color: var(--text-primary);
 }
 
-.stats-cards {
+.statsCards {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
 
-.stat-card {
+.statCard {
   background: var(--bg-primary);
   border-radius: 12px;
   padding: 1.5rem;
@@ -24,63 +24,75 @@
   text-align: center;
 }
 
-.stat-card.income {
+.statCard.income {
   border-top: 4px solid var(--income);
 }
 
-.stat-card.expense {
+.statCard.expense {
   border-top: 4px solid var(--expense);
 }
 
-.stat-label {
+.statLabel {
   font-size: 0.875rem;
   color: var(--text-secondary);
   margin-bottom: 0.5rem;
 }
 
-.stat-value {
+.statValue {
   font-size: 1.5rem;
   font-weight: 700;
 }
 
-.stat-card.income .stat-value {
+.statCard.income .statValue {
   color: var(--income);
 }
 
-.stat-card.expense .stat-value {
+.statCard.expense .statValue {
   color: var(--expense);
 }
 
-.chart-container {
+.chartContainer {
   background: var(--bg-primary);
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 2px 8px var(--shadow);
 }
 
-.chart-title {
+.chartTitle {
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
   color: var(--text-primary);
 }
 
-.empty-state {
+.emptyState {
   text-align: center;
   padding: 3rem 1rem;
   color: var(--text-secondary);
 }
 
+.budgetSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.progressList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 @media (min-width: 768px) {
-  .analytics-title {
+  .analyticsTitle {
     font-size: 2.25rem;
   }
 
-  .stats-cards {
+  .statsCards {
     max-width: 600px;
   }
 
-  .chart-container {
+  .chartContainer {
     padding: 2rem;
   }
 }

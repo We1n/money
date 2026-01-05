@@ -1,0 +1,100 @@
+.progressBar {
+  background: var(--bg-primary);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+
+.progressHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.categoryInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.categoryIcon {
+  font-size: 1.25rem;
+}
+
+.categoryName {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.amountInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.currentAmount {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.separator {
+  color: var(--text-secondary);
+}
+
+.limitAmount {
+  color: var(--text-secondary);
+}
+
+.progressTrack {
+  width: 100%;
+  height: 8px;
+  background: var(--bg-secondary);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.progressFill.overLimit {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.progressFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+}
+
+.percentage {
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.remaining {
+  color: var(--income);
+  font-weight: 500;
+}
+
+.overLimitText {
+  color: var(--expense);
+  font-weight: 600;
+}
+
