@@ -34,6 +34,29 @@
   outline: none;
 }
 
+/* Убираем запятую в placeholder для date input */
+.filterDate::-webkit-datetime-edit-text {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.filterDate:invalid::-webkit-datetime-edit-text {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.filterDate::-webkit-datetime-edit-month-field,
+.filterDate::-webkit-datetime-edit-day-field,
+.filterDate::-webkit-datetime-edit-year-field {
+  color: var(--text-primary);
+}
+
+.filterDate:invalid::-webkit-datetime-edit-month-field,
+.filterDate:invalid::-webkit-datetime-edit-day-field,
+.filterDate:invalid::-webkit-datetime-edit-year-field {
+  color: var(--text-secondary);
+}
+
 .emptyState {
   text-align: center;
   padding: 3rem 1rem;

@@ -8,7 +8,6 @@ import styles from './Dashboard.module.css';
 export default function Dashboard() {
   const balance = useBudgetStore((state) => state.getBalance());
   const categories = useBudgetStore((state) => state.categories);
-  const addTransaction = useBudgetStore((state) => state.addTransaction);
   const [showForm, setShowForm] = useState(false);
   const [formType, setFormType] = useState<'income' | 'expense'>('expense');
   const [initialCategory, setInitialCategory] = useState<string | undefined>();

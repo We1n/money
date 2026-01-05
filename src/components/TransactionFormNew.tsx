@@ -13,7 +13,7 @@ const transactionSchema = z.object({
   amount: z
     .string()
     .min(1, 'Сумма обязательна')
-    .refine((val) => !isNaN(parseFloat(val)) && parseFloat(val) > 0, {
+    .refine((val: string) => !isNaN(parseFloat(val)) && parseFloat(val) > 0, {
       message: 'Сумма должна быть больше 0',
     }),
   category: z.string().min(1, 'Выберите категорию'),

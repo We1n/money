@@ -93,6 +93,29 @@
   border-color: var(--income);
 }
 
+/* Убираем запятую в placeholder для date input */
+.formGroup input[type="date"]::-webkit-datetime-edit-text {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.formGroup input[type="date"]:invalid::-webkit-datetime-edit-text {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.formGroup input[type="date"]::-webkit-datetime-edit-month-field,
+.formGroup input[type="date"]::-webkit-datetime-edit-day-field,
+.formGroup input[type="date"]::-webkit-datetime-edit-year-field {
+  color: var(--text-primary);
+}
+
+.formGroup input[type="date"]:invalid::-webkit-datetime-edit-month-field,
+.formGroup input[type="date"]:invalid::-webkit-datetime-edit-day-field,
+.formGroup input[type="date"]:invalid::-webkit-datetime-edit-year-field {
+  color: var(--text-secondary);
+}
+
 .submitBtn {
   padding: 0.875rem;
   border-radius: 8px;

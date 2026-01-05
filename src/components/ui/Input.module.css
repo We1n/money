@@ -32,6 +32,38 @@
   color: var(--color-text-muted);
 }
 
+/* Убираем запятую в placeholder для date input */
+.input[type="date"]::-webkit-datetime-edit-text {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.input[type="date"]:invalid::-webkit-datetime-edit-text {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.input[type="date"]::-webkit-datetime-edit-month-field,
+.input[type="date"]::-webkit-datetime-edit-day-field,
+.input[type="date"]::-webkit-datetime-edit-year-field {
+  color: var(--color-text-muted);
+}
+
+.input[type="date"]:invalid::-webkit-datetime-edit-month-field,
+.input[type="date"]:invalid::-webkit-datetime-edit-day-field,
+.input[type="date"]:invalid::-webkit-datetime-edit-year-field {
+  color: var(--color-text-muted);
+}
+
+.input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
 .input:hover:not(:disabled) {
   border-color: var(--color-border);
 }
@@ -71,4 +103,5 @@
 .hasError .helper {
   display: none;
 }
+
 
