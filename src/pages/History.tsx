@@ -1,4 +1,5 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef } from 'react';
+import { useVirtualizer } from '@tanstack/react-virtual';
 import { useBudgetStore } from '../store';
 import { Transaction } from '../types';
 import TransactionForm from '../components/TransactionForm';
@@ -9,6 +10,7 @@ export default function History() {
   const [filterType, setFilterType] = useState<'all' | 'income' | 'expense'>('all');
   const [filterDate, setFilterDate] = useState('');
   const [editingTransaction, setEditingTransaction] = useState<Transaction | null>(null);
+  const parentRef = useRef<HTMLDivElement>(null);
 
   const filteredTransactions = useMemo(() => {
     let filtered = [...transactions];
@@ -23,6 +25,14 @@ export default function History() {
 
     return filtered.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   }, [transactions, filterType, filterDate]);
+
+  // Виртуализация списка
+  const virtualizer = useVirtualizer({
+    count: filteredTransactions.length,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => 80, // Примерная высота элемента транзакции
+    overscan: 5, // Рендерим 5 дополнительных элементов для плавности
+  });
 
   const getCategoryColor = (categoryName: string) => {
     const category = categories.find((c) => c.name === categoryName);
@@ -67,17 +77,46 @@ export default function History() {
           <p>Нет операций</p>
         </div>
       ) : (
-        <div className={styles.transactionsList}>
-          {filteredTransactions.map((transaction) => (
-            <TransactionItem
-              key={transaction.id}
-              transaction={transaction}
-              categoryColor={getCategoryColor(transaction.category)}
-              onDelete={deleteTransaction}
-              onEdit={setEditingTransaction}
-              formatDate={formatDate}
-            />
-          ))}
+        <div
+          ref={parentRef}
+          className={styles.transactionsList}
+          style={{
+            height: '600px',
+            overflow: 'auto',
+          }}
+        >
+          <div
+            style={{
+              height: `${virtualizer.getTotalSize()}px`,
+              width: '100%',
+              position: 'relative',
+            }}
+          >
+            {virtualizer.getVirtualItems().map((virtualItem) => {
+              const transaction = filteredTransactions[virtualItem.index];
+              return (
+                <div
+                  key={virtualItem.key}
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: `${virtualItem.size}px`,
+                    transform: `translateY(${virtualItem.start}px)`,
+                  }}
+                >
+                  <TransactionItem
+                    transaction={transaction}
+                    categoryColor={getCategoryColor(transaction.category)}
+                    onDelete={deleteTransaction}
+                    onEdit={setEditingTransaction}
+                    formatDate={formatDate}
+                  />
+                </div>
+              );
+            })}
+          </div>
         </div>
       )}
 

@@ -89,10 +89,20 @@ export default function Analytics() {
   }, [transactions]);
 
   const budgetProgressData = useMemo(() => {
-    const expenseTransactions = transactions.filter((t) => t.type === 'expense');
+    // Рассчитываем расходы только за текущий месяц
+    const now = new Date();
+    const currentMonth = now.getMonth();
+    const currentYear = now.getFullYear();
+
+    const monthlyExpenseTransactions = transactions.filter((t) => {
+      if (t.type !== 'expense') return false;
+      const date = new Date(t.date);
+      return date.getMonth() === currentMonth && date.getFullYear() === currentYear;
+    });
+
     const categoryExpenses = new Map<string, number>();
 
-    expenseTransactions.forEach((t) => {
+    monthlyExpenseTransactions.forEach((t) => {
       const current = categoryExpenses.get(t.category) || 0;
       categoryExpenses.set(t.category, current + t.amount);
     });
