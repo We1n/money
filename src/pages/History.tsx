@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef } from 'react';
-import { useVirtualizer } from '@tanstack/react-virtual';
+import { useVirtualizer, VirtualItem } from '@tanstack/react-virtual';
 import { useBudgetStore } from '../store';
 import { Transaction } from '../types';
 import TransactionForm from '../components/TransactionForm';
@@ -92,7 +92,7 @@ export default function History() {
               position: 'relative',
             }}
           >
-            {virtualizer.getVirtualItems().map((virtualItem) => {
+            {virtualizer.getVirtualItems().map((virtualItem: VirtualItem) => {
               const transaction = filteredTransactions[virtualItem.index];
               return (
                 <div

@@ -1,6 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { useBudgetStore } from '../index';
-import { Transaction, Category } from '../../types';
 
 describe('Budget Store', () => {
   beforeEach(() => {
@@ -290,4 +289,5 @@ describe('Budget Store', () => {
     });
   });
 });
+
 
