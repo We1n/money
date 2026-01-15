@@ -161,6 +161,7 @@ function TransactionItem({
         <div
           className={`${styles.transactionAmount} ${transaction.type === 'income' ? styles.income : styles.expense}`}
         >
+          {transaction.isApproximate && <span className={styles.approximateBadge}>~</span>}
           {transaction.type === 'income' ? '+' : '−'}
           {transaction.amount.toLocaleString('ru-RU', {
             minimumFractionDigits: 0,

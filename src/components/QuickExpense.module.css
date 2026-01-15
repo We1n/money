@@ -1,0 +1,141 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.balanceInfo {
+  padding: var(--spacing-md);
+  background: var(--color-surface-variant);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-sm);
+}
+
+.balanceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.balanceLabel {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.balanceValue {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+}
+
+.differenceSection {
+  padding: var(--spacing-md);
+  background: var(--color-surface-variant);
+  border-radius: var(--radius-md);
+  border: 2px solid var(--color-border);
+  margin-top: var(--spacing-sm);
+}
+
+.differenceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-sm);
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid var(--color-border);
+}
+
+.differenceLabel {
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  font-weight: var(--font-weight-semibold);
+}
+
+.differenceValue {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+}
+
+.differencePositive {
+  color: var(--color-expense);
+}
+
+.differenceNegative {
+  color: var(--color-income);
+}
+
+.differenceHint {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-sm);
+  background: var(--color-surface);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.hintIcon {
+  font-size: var(--font-size-base);
+  flex-shrink: 0;
+}
+
+.hintText {
+  line-height: 1.5;
+}
+
+.approximateToggle {
+  padding: var(--spacing-sm) 0;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--color-primary);
+}
+
+.checkboxText {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+}
+
+.info {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  background: var(--color-surface-variant);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.infoIcon {
+  font-size: var(--font-size-lg);
+  flex-shrink: 0;
+}
+
+.infoText {
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
+}
+
+

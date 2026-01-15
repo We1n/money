@@ -25,6 +25,7 @@ const defaultCategories: Category[] = [
   { id: '6', name: 'Другое', color: '#607D8B', icon: '📦', isQuickAccess: false },
   { id: '7', name: 'Зарплата', color: '#4CAF50', icon: '💰', isQuickAccess: true },
   { id: '8', name: 'Подарки', color: '#E91E63', icon: '🎁', isQuickAccess: false },
+  { id: '9', name: 'Мелкие траты', color: '#FFC107', icon: '💸', isQuickAccess: true },
 ];
 
 export const useBudgetStore = create<BudgetState>()(

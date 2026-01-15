@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useBudgetStore } from '../store';
 import TransactionFormNew from '../components/TransactionFormNew';
+import QuickExpense from '../components/QuickExpense';
 import { Card, Button } from '../components/ui';
 import {
   PieChart,
@@ -26,6 +27,7 @@ export default function Dashboard() {
   const [showForm, setShowForm] = useState(false);
   const [formType, setFormType] = useState<'income' | 'expense'>('expense');
   const [initialCategory, setInitialCategory] = useState<string | undefined>();
+  const [showQuickExpense, setShowQuickExpense] = useState(false);
 
   const quickAccessCategories = categories.filter((cat) => cat.isQuickAccess);
 
@@ -207,6 +209,27 @@ export default function Dashboard() {
         </Button>
       </motion.div>
 
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, delay: 0.25 }}
+        className={styles.quickExpenseSection}
+      >
+        <Button
+          variant="secondary"
+          size="md"
+          onClick={() => setShowQuickExpense(true)}
+          className={styles.quickExpenseButton}
+          fullWidth
+        >
+          <span className={styles.quickExpenseIcon}>⚡</span>
+          <span>Быстрая трата (забыл что)</span>
+        </Button>
+        <p className={styles.quickExpenseHint}>
+          Для мелких трат, которые забыл занести. Только сумма, остальное автоматически.
+        </p>
+      </motion.div>
+
       {quickAccessCategories.length > 0 && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -343,6 +366,11 @@ export default function Dashboard() {
         onClose={handleFormClose}
         isOpen={showForm}
         initialCategory={initialCategory}
+      />
+
+      <QuickExpense
+        isOpen={showQuickExpense}
+        onClose={() => setShowQuickExpense(false)}
       />
     </div>
   );

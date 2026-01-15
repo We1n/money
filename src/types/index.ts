@@ -7,6 +7,7 @@ export interface Transaction {
   category: string;
   date: string; // ISO format
   comment?: string;
+  isApproximate?: boolean; // Приблизительная сумма (для забытых трат)
 }
 
 export interface Category {

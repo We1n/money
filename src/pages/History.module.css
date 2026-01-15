@@ -130,6 +130,15 @@
   color: var(--expense);
 }
 
+.approximateBadge {
+  display: inline-block;
+  margin-right: 0.25rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  opacity: 0.8;
+}
+
 .editBtn,
 .deleteBtn {
   background: none;

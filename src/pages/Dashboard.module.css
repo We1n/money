@@ -167,6 +167,40 @@
   text-align: center;
 }
 
+.quickExpenseSection {
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.quickExpenseButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  border: 2px dashed var(--color-border);
+  background: var(--color-surface-variant);
+}
+
+.quickExpenseButton:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.quickExpenseIcon {
+  font-size: var(--font-size-lg);
+}
+
+.quickExpenseHint {
+  margin-top: var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  text-align: center;
+  line-height: 1.4;
+}
+
 
 
 
